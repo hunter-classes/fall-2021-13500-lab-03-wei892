@@ -11,7 +11,7 @@ double get_east_storage(std::string date)
   std::ifstream fin("Current_Reservoir_Levels.tsv");
   if (fin.fail())
     {
-      std::cerr << "File cannot be opened for reading." << endl;
+      std::cerr << "File cannot be opened for reading." << std::endl;
       exit(1); //exit if failed to open the file
     }
 
@@ -28,7 +28,7 @@ double get_east_storage(std::string date)
   //double to store east basin storage
   double east_storage; 
   //loop to read all the data
-  while (fin >> date >> eastSt >> eastEl >> westSt >> westEl)
+  while (fin >> data_date >> eastSt >> eastEl >> westSt >> westEl)
     {
       //this string reads the file line by line, 5 values are expected
 
@@ -40,6 +40,7 @@ double get_east_storage(std::string date)
 	}
     }
   fin.close();
+  return east_storage;
 }
 
 

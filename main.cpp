@@ -1,4 +1,12 @@
-// add your code as appropriate 
+/*
+Name: Wei Lin Li
+Course: CSCI-135
+Instructor: Tong Yi and Mike Zamansky
+Assignment: Lab3
+
+This file is the main file where it includes all the 
+tests by calling the prototypes
+*/ 
 #include <iostream>
 #include "reservoir.h"
 #include "reverseorder.h"

@@ -1,7 +1,12 @@
 /*
+Name: Wei Lin Li
+Course: CSCI-135
+Instructor: Tong Yi and Mike Zamansky
+Assignment: Lab
 
- */
-
+This program will collect the west elevation data between the two days listed inclusively
+Then it will return them in the reverse order
+*/
 
 #include <iostream>
 #include <fstream>

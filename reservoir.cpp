@@ -1,6 +1,15 @@
 /*
 Name: Wei Lin Li
- */
+Course: CSCI-135
+Instructor: Tong Yi and Mike Zamansky
+Assignment: Lab3
+
+This file includes 4 prototypes
+get east storage will return the east side storage based on the date given
+min east storage will return the smallest storage value in the data on the east side
+max east storage will return the largest storage value in the data on the east side
+compare basin will return the side that has a greater elevation
+*/
 
 #include <iostream>
 #include <fstream>

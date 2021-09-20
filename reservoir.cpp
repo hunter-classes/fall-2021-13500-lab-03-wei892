@@ -1,4 +1,6 @@
-// this file will contain the prototype to get the east storage
+/*
+Name: Wei Lin Li
+ */
 
 #include <iostream>
 #include <fstream>
@@ -6,6 +8,8 @@
 #include <climits>
 #include "reservoir.h"
 
+
+//prototype to get east storage
 double get_east_storage(std::string date)
 {
   std::ifstream fin("Current_Reservoir_Levels.tsv");
@@ -24,9 +28,7 @@ double get_east_storage(std::string date)
   double eastEl;
   double westSt;
   double westEl;
-
-  //double to store east basin storage
-  double east_storage; 
+  
   //loop to read all the data
   while (fin >> data_date >> eastSt >> eastEl >> westSt >> westEl)
     {
@@ -35,15 +37,17 @@ double get_east_storage(std::string date)
       fin.ignore(INT_MAX, '\n'); //skips to the next line, ignores rest of the colomns
       if (date == data_date)
 	{
-	  
 	  return eastSt;
 	}
     }
   fin.close();
-  return east_storage;
+  return eastSt;
 }
 
 
+//---------------------------------------------------------------
+
+//prototype to get min east storage
 double get_min_east()
 {
   //variable to store min value
@@ -76,6 +80,9 @@ double get_min_east()
 }
 
 
+//---------------------------------------------------
+
+//prototype to get the max east storage
 double get_max_east()
 {
   //variable to store max value
@@ -90,11 +97,9 @@ double get_max_east()
   std::string junk;
   getline(fin, junk); //read one line from the file
 
-
   std::string data_date;
   double eastSt;
-  //i only created these two bcuz only these two coloumns were necessary for part c
-  
+  //i only created these two bcuz only these two coloumns were necessary for part c  
   while (fin >> data_date >> eastSt)
     {
       //only two values are read bcuz only the two values are needed for this part
@@ -106,4 +111,54 @@ double get_max_east()
     }
   fin.close();
   return max;
+}
+
+
+//-----------------------------------------------
+
+
+//prototype to comepare basins
+std::string compare_basins(std::string date)
+{
+  std::ifstream fin("Current_Reservoir_Levels.tsv");
+  if (fin.fail())
+    {
+      std::cerr << "File cannot be opened for reading." << std::endl;
+      exit(1); //exit if failed to open the file
+    }
+
+  std::string junk;
+  getline(fin, junk); //read one line from the file
+
+  //declaring the variables
+  std::string data_date;
+  double eastSt;
+  double eastEl;
+  double westSt;
+  double westEl;
+  
+  //loop to read all the data
+  while (fin >> data_date >> eastSt >> eastEl >> westSt >> westEl)
+    {
+      //this string reads the file line by line, 5 values are expected
+
+      fin.ignore(INT_MAX, '\n'); //skips to the next line, ignores rest of the colomns
+      if (date == data_date)
+	{
+	  if (westEl > eastEl)
+	    {
+	      return "West";
+	    }
+	  else if ( westEl < eastEl)
+	    {
+	      return "East";
+	    }
+	  else
+	    {
+	      return "Equal";
+	    }
+	}
+    }
+  fin.close();
+  return "Invalid";
 }
